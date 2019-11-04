@@ -6,19 +6,26 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import artistepx.logic.ArtistePX;
+
 public class MainWindow extends JFrame {
 
 	private PaintPanel paintPanel;
 	
 	private OptionsPanel optionsPanel;
 	
+	private ArtistePX artistePX;
+	
 	public MainWindow() {
+		
+		artistePX = new ArtistePX();
 		
 		paintPanel = new PaintPanel(this, 20, 20);
 		add(paintPanel, BorderLayout.CENTER);
 		
 		optionsPanel = new OptionsPanel(this);
 		add(optionsPanel, BorderLayout.SOUTH);
+		
 		
 	}
 	
