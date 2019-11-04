@@ -12,11 +12,16 @@ import javax.swing.JTextField;
 
 public class PaintPanel extends JPanel implements MouseListener{
 
+	private Color brushColor;
+	
+	private int brushEnable = 0;
+	
 	private int pixelHeight;
 	
 	private int pixelWidth;
 	
 	private MainWindow mainWindow;
+	
 	
 	private JTextField[][] pixels;
 	
@@ -24,7 +29,7 @@ public class PaintPanel extends JPanel implements MouseListener{
 
 		this.pixelHeight = pixelHeight;
 		this.pixelWidth = pixelWidth;
-		
+		this.brushColor = new Color(0, 0, 0);
 		this.mainWindow = mainWindow;
 		
 		setLayout(new GridLayout(pixelHeight, pixelWidth));
@@ -35,23 +40,37 @@ public class PaintPanel extends JPanel implements MouseListener{
 				pixels[i][j] = new JTextField();
 				pixels[i][j].addMouseListener(this);
 				pixels[i][j].setEditable(false);
+				pixels[i][j].setBackground(Color.WHITE);
 				add(pixels[i][j]);
 			}
 		}
 		
 	}
 
+
+	public Color getBrushColor() {
+		return brushColor;
+	}
+
+	public void setBrushColor(Color brushColor) {
+		this.brushColor = brushColor;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		e.getComponent().setBackground(Color.BLACK);
-		((JComponent) e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		e.getComponent().setBackground(getBrushColor());
+		((JComponent) e.getComponent()).setBorder(BorderFactory.createLineBorder(getBrushColor(), 1));
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(brushEnable == 1)
+		{
+			e.getComponent().setBackground(getBrushColor());
+			((JComponent) e.getComponent()).setBorder(BorderFactory.createLineBorder(getBrushColor(), 1));
+		}
 	}
 
 	@Override
@@ -63,12 +82,21 @@ public class PaintPanel extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(brushEnable == 0)
+		{
+			brushEnable = 1;
+			e.getComponent().setBackground(getBrushColor());
+			((JComponent) e.getComponent()).setBorder(BorderFactory.createLineBorder(getBrushColor(), 1));
+		}
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(brushEnable == 1)
+		{
+			brushEnable = 0;
+		}
 		
 	}
 	

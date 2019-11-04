@@ -11,12 +11,17 @@ public class OptionsPanel extends JPanel {
 	
 	private JButton btColor;
 	
+	private ColorPanel colorPanel;
+	
 	public OptionsPanel(MainWindow mainWindow) {
 		
 		this.mainWindow = mainWindow;
-		setLayout(new GridLayout(10, 1));
+		setLayout(new GridLayout(1, 2));
 		
-		btColor = new JButton("Color");
+		colorPanel = new ColorPanel(mainWindow);
+		add(colorPanel);
+		
+		btColor = new JButton("Opciones");
 		add(btColor);
 	}
 	
