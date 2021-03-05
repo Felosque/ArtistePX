@@ -19,6 +19,10 @@ public class OptionsPanel extends JPanel {
 	
 	private JButton btNewDraw;
 	
+	private JButton btSave;
+	
+	private JButton btLoad;
+	
 	private JButton btSelectColor;
 	
 	private ColorPanel colorPanel;
@@ -57,6 +61,16 @@ public class OptionsPanel extends JPanel {
 		btSelectColor.setActionCommand(Constants.BT_SELECTCOLOR);
 		btSelectColor.addActionListener(mainWindow.getActionListener());
 		panelOptionsTools.add(btSelectColor);
+		
+		btSave = new JButton("SAVE");
+		btSave.setActionCommand(Constants.BT_SAVE);
+		btSave.addActionListener(mainWindow.getActionListener());
+		panelOptionsTools.add(btSave);
+		
+		btLoad = new JButton("LOAD");
+		btLoad.setActionCommand(Constants.BT_LOAD);
+		btLoad.addActionListener(mainWindow.getActionListener());
+		panelOptionsTools.add(btLoad);
 		
 		btOptions = new JButton("Opciones");
 		btOptions.setActionCommand(Constants.BT_OPTIONS);

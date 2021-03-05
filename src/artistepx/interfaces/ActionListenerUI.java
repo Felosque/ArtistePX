@@ -33,6 +33,12 @@ public class ActionListenerUI implements ActionListener{
 		else if(command.equals(Constants.BT_SELECTCOLOR)){
 			mainWindow.setSelectColor();
 		}
+		else if(command.equals(Constants.BT_SAVE)){
+			mainWindow.saveDraw();
+		}
+		else if(command.equals(Constants.BT_LOAD)){
+			mainWindow.loadDraw();
+		}
 		
 	}
 

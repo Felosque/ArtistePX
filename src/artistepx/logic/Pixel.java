@@ -1,7 +1,14 @@
 package artistepx.logic;
 
-public class Pixel {
+import java.io.Serializable;
+
+public class Pixel implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int positionX;
 	
 	private int positionY;
@@ -59,6 +66,12 @@ public class Pixel {
 
 	public void setColorB(int colorB) {
 		this.colorB = colorB;
+	}
+
+	@Override
+	public String toString() {
+		return "Pixel [positionX=" + positionX + ", positionY=" + positionY + ", ColorR=" + ColorR + ", colorG="
+				+ colorG + ", colorB=" + colorB + "]";
 	}
 	
 }

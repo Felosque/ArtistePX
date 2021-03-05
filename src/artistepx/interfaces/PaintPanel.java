@@ -5,11 +5,14 @@ import java.awt.Cursor;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import artistepx.logic.Pixel;
 
 public class PaintPanel extends JPanel implements MouseListener{
 
@@ -75,6 +78,27 @@ public class PaintPanel extends JPanel implements MouseListener{
 
 	public void setBrushColor(Color brushColor) {
 		this.brushColor = brushColor;
+	}
+	
+	public ArrayList<Pixel> getDrawToArrayList() {
+		ArrayList<Pixel> draw = new ArrayList<Pixel>();
+		
+		for (int i = 0; i < pixels.length; i++) {
+			for (int j = 0; j < pixels[0].length; j++) {
+				draw.add(new Pixel(i, j, pixels[i][j].getBackground().getRed(), 
+						pixels[i][j].getBackground().getGreen(), pixels[i][j].getBackground().getBlue()));
+			}
+		}
+		return draw;
+	}
+	
+	public void setDrawToPanel(ArrayList<Pixel> pixeles)
+	{
+		for (int i = 0; i < pixeles.size(); i++) {
+			Pixel pixel = pixeles.get(i);
+			pixels[pixel.getPositionX()][pixel.getPositionY()].setBackground(
+					new Color(pixel.getColorR(), pixel.getColorG(), pixel.getColorB()));
+		}
 	}
 
 	@Override

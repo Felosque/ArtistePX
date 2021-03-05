@@ -3,11 +3,16 @@ package artistepx.interfaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.File;
+import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import artistepx.logic.ArtistePX;
+import artistepx.logic.Pixel;
 
 public class MainWindow extends JFrame {
 
@@ -32,6 +37,27 @@ public class MainWindow extends JFrame {
 		add(optionsPanel, BorderLayout.SOUTH);
 		
 		this.pack();
+	}
+	
+	public void loadDraw() {
+		JFileChooser fileChooser = new JFileChooser("./saves");
+		int selected = fileChooser.showOpenDialog(this);
+//		FileNameExtensionFilter filter = new FileNameExtensionFilter(".artpx");
+//		fileChooser.setFileFilter(filter);
+		try {
+			if (selected == JFileChooser.APPROVE_OPTION)
+			{
+			   File file = fileChooser.getSelectedFile();
+			   ArrayList<Pixel> pixels = artistePX.viewPixelArt(file.getAbsolutePath());
+			   paintPanel.setDrawToPanel(pixels);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void saveDraw() {
+		artistePX.savePixelArt("Prueba1", paintPanel.getDrawToArrayList());
 	}
 	
 	public void newDraw()
